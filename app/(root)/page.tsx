@@ -1,10 +1,25 @@
-import { UserButton } from '@clerk/nextjs';
-import React from 'react';
+"use client";
+
+import { useEffect } from "react";
+
+import StoreModal from "@/components/modals/store-modal";
+import useStoreModal from "@/hooks/use-store-modal";
 
 const page = () => {
+
+    const {onOpen, isOpen} = useStoreModal();
+
+    useEffect(() => {
+        if (!isOpen) {
+            onOpen();
+        }
+    }, [onOpen, isOpen])
+    
+
     return (
-        <div className='flex justify-end p-4'>
-            <UserButton afterSignOutUrl="/" />
+        <div>
+            This is the root page.
+            <StoreModal/>
         </div>
     );
 };
